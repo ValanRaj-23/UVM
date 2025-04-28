@@ -6,6 +6,8 @@ class parent extends uvm_component;
 
 	function new(string name = "parent", uvm_component parent);
 		super.new(name,parent);
+      		`uvm_info("Parent", "Parent class", UVM_LOW)
+
 	endfunction
 
 	function void display();
@@ -20,6 +22,8 @@ class child extends parent;
 
 	function new(string name = "child", uvm_component parent);
 		super.new(name,parent);
+      		`uvm_info("Child", "Child class", UVM_LOW)
+
 	endfunction
 
 	function void display();
@@ -31,6 +35,7 @@ endclass
 class test extends uvm_test;
 	`uvm_component_utils(test)
 	parent pr;
+  	child ch;
 
 	function new(string name = "test", uvm_component parent);
 		super.new(name, parent);
@@ -41,7 +46,9 @@ class test extends uvm_test;
       	super.build_phase(phase);
 		set_type_override_by_type(parent::get_type(), child::get_type());
 		pr = parent::type_id::create("pr",this);
-		factory.print();
+      	ch = child::type_id::create("ch",this);
+
+      factory.print();
 	endfunction
 
 	function void end_of_elaboration_phase(uvm_phase phase);
@@ -51,7 +58,9 @@ class test extends uvm_test;
 
 	task run_phase(uvm_phase phase);
 		super.run_phase(phase);
-		pr.display();
+// 		pr.display();
+//       ch.display();
+      	
 	endtask
 
 endclass

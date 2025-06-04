@@ -19,8 +19,8 @@ class base_agent extends uvm_agent;
 	function void build_phase(uvm_phase phase);
 		super.build_phase(phase);
       	seqr 	= base_seqr	::type_id::create("seqr",this);
-      	drv		= base_drv	::type_id::create("drv",this);	 
-      	mon		= base_mon	::type_id::create("mon",this);
+      	drv	= base_drv	::type_id::create("drv",this);	 
+      	mon	= base_mon	::type_id::create("mon",this);
       	`uvm_info(get_type_name, "BUILD_PHASE", UVM_FULL)
 	endfunction 
 
